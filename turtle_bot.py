@@ -57,7 +57,7 @@ class Turtlebot(object):
         self.current_substate = None
 
         self.current_min_dist = None
-        self.stop_dist = 0.64
+        self.stop_dist = 0.4
         self.speed_const = 0.7 / 1.4
 
         self.movement_enabled = True
@@ -348,14 +348,14 @@ class Turtlebot(object):
     def __track_red(self):
 
         img = np.asarray(self.current_cv_rgb_image)
-        img = cv2.blur(img,(5,5))
+        img = cv2.blur(img,(7,7))
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
         lower = np.array([170,160,60])
         upper = np.array([180,256,256])
 
         mask = cv2.inRange(hsv, lower, upper)
-        mask = cv2.blur(mask,(5,5))
+        mask = cv2.blur(mask,(7,7))
         
         self.current_mask = mask
         
@@ -421,9 +421,18 @@ class Turtlebot(object):
         elif self.current_state == "following":
             if self.current_target_x != None and self.current_target_depth != None:
                 factor_a = float(self.current_target_x) - 320.0
-                factor_l = float(self.current_target_depth) / 2.0
+                
+                factor_l =  (float(self.current_target_depth) - self.stop_dist ) / 2.0 
+
+
+                if abs(float(self.current_target_depth) - self.stop_dist) < 0.2 :
+                    lin_velocity = 0 
                 print "Vel: "+ str(lin_velocity * factor_l)
-                self.move(linear = lin_velocity * factor_l, angular = angle_velocity * -1 * factor_a / 320.0 )
+                print "Target: ", float(self.current_target_depth)
+                print "Stop at: ", float(self.stop_dist)
 
-
+                if (self.current_target_depth < 2.0):
+                    self.move(linear = lin_velocity * factor_l, angular = angle_velocity * -1 * factor_a / 320.0 )
+                else:
+                    self.move(linear = lin_velocity, angular = angle_velocity * -1 * factor_a / 320.0 )
 
