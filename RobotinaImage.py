@@ -12,28 +12,28 @@ class RobotinaImage:
 		self.hist_track = None
 		self.track_crit = ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 10 )
 	
-	def image_analisis(self, img, depth = None):
+	def image_analisis(self, img):
 		if self.friend:
 			return self.rgb_analisis(img)
 		else:
-			if depth == None:
-				raise AssertionError('depth is None')
-				return
-			return self.deph_analisis(img, depth)
+			return self.deph_analisis(img)
 
 
-	def deph_analisis(self, img, depth):
+	def deph_analisis(self, depth):
 		h,w = depth.shape
 
-		depth_min = []
+		max_depth = -1
+		max_depth_idx = -1
 		idx = 0
 		delta = int(w/3)
 		for i in range(0, 3):
 			segment = depth[:, idx:idx+delta]
-			depth_min.append(segment[~np.isnan(segment)].min())
 			idx = idx+delta+1
+			if segment[~np.isnan(segment)].max() > max_depth:
+				max_depth = segment[~np.isnan(segment)].max()
+				max_depth_idx = i
 
-		print depth_min
+		return max_depth_idx
 
 
 	def rgb_analisis(self, img):

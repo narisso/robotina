@@ -7,15 +7,17 @@ import time
 import math
 import random
 import thread
+import rospy
+
 
 if __name__ == "__main__":
 	robot = get_robot()
+	r = rospy.Rate(100)
 	while True:
-		robot.move_searh_n_destroy(0.23, 1.0)
-		if robot.current_mask != None:
-			cv2.imshow("Image",robot.current_mask)
+		robot.move_searh_n_destroy(0.20, 1.0)
+		r.sleep()
 
-		k = cv2.waitKey(1)
-		if k == 27:
-			break
+		#if robot.current_mask != None:
+			#cv2.imshow("Image",robot.horrible)
+
 		

@@ -15,6 +15,7 @@ from nav_msgs.msg import Odometry
 from sensor_msgs.msg import LaserScan
 from sensor_msgs.msg import Image
 from tf import transformations as trans
+from RobotinaImage import RobotinaImage
 
 _turtlebot_singleton = None
 
@@ -29,7 +30,7 @@ def get_robot():
 
 
 class Turtlebot(object):
-    max_linear = 0.23
+    max_linear = 0.25
     min_linear = 0.05
     max_angular = 2.0
     d1 = 0.7
@@ -45,6 +46,9 @@ class Turtlebot(object):
         rospy.init_node('pyturtlebot', anonymous=True)
         rospy.myargv(argv=sys.argv)
 
+        self.horrible = None
+        self.image_procesor = RobotinaImage(maze=True)
+
         self.__x = None
         self.__y = None
         self.__angle = None
@@ -57,7 +61,7 @@ class Turtlebot(object):
         self.current_substate = None
 
         self.current_min_dist = None
-        self.stop_dist = 0.4
+        self.stop_dist = 0.8
         self.speed_const = 0.7 / 1.4
 
         self.movement_enabled = True
@@ -75,8 +79,8 @@ class Turtlebot(object):
         self.current_target_y = None
         self.current_target_depth = None
 
-        self.crop_h = 400
-        self.crop_w = 600
+        self.crop_h = 480
+        self.crop_w = 480
 
         self.__cmd_vel_pub = rospy.Publisher('/mobile_base/commands/velocity', Twist)
         self.__bumper_sub = rospy.Subscriber('/mobile_base/events/bumper', BumperEvent, self.__bumper_handler)
@@ -319,12 +323,15 @@ class Turtlebot(object):
 
             img = np.asarray(self.current_cv_image)
 
-            img = img[240 - h:240 + h, 320 - w: 320 + w]
+            img = img[240 - h :240, 320 - w: 320 + w]
+            self.horrible = img
+            print self.image_procesor.image_analisis(img)
+
             img = img[~np.isnan(img)]
 
             img = np.sort(img)
             self.current_min_dist = img[0]
-            
+
             if self.current_target_x != None and self.current_mask != None:
                 img = np.asarray(self.current_cv_image)
                 target_img = cv2.bitwise_and(img,img, mask = self.current_mask)
@@ -348,14 +355,14 @@ class Turtlebot(object):
     def __track_red(self):
 
         img = np.asarray(self.current_cv_rgb_image)
-        img = cv2.blur(img,(7,7))
+        img = cv2.blur(img,(5,5))
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
         lower = np.array([170,160,60])
         upper = np.array([180,256,256])
 
         mask = cv2.inRange(hsv, lower, upper)
-        mask = cv2.blur(mask,(7,7))
+        mask = cv2.blur(mask,(5,5))
         
         self.current_mask = mask
         
@@ -379,7 +386,7 @@ class Turtlebot(object):
 
     def __check_depth(self):
         
-        img = np.asarray(self.current_cv_image)
+        img = np.asarray(self.horrible)
         img = img[np.isnan(img)]
         nans = len(img)
 
@@ -387,7 +394,7 @@ class Turtlebot(object):
             self.current_substate = "turning"
         elif self.current_min_dist < self.stop_dist:
             self.current_substate = "turning"
-        elif nans > 640*480*0.5:
+        elif nans > 480*240*1.0:
             self.current_substate = "backwards"
         else:
             self.current_substate = "moving"
@@ -399,10 +406,8 @@ class Turtlebot(object):
         if self.current_state == None:
             self.current_state = "following"
         
-        if self.current_min_dist:
-            pass#lin_velocity = self.current_min_dist*self.speed_const + self.v0
-        else:
-            pass#lin_velocity = 0.2
+        #print self.current_state
+        #print "MINDIST: ",self.current_min_dist
 
         #lin_velocity = min(self.max_linear, lin_velocity)
         if self.current_state == "searching":
@@ -419,20 +424,21 @@ class Turtlebot(object):
                 pass
 
         elif self.current_state == "following":
+            #print (str(self.current_target_x) + "   "+ str(self.current_target_depth))
             if self.current_target_x != None and self.current_target_depth != None:
-                factor_a = float(self.current_target_x) - 320.0
+                                
                 
+                factor_a = float(self.current_target_x) - 320.0                
                 factor_l =  (float(self.current_target_depth) - self.stop_dist ) / 2.0 
-
 
                 if abs(float(self.current_target_depth) - self.stop_dist) < 0.2 :
                     lin_velocity = 0 
-                print "Vel: "+ str(lin_velocity * factor_l)
-                print "Target: ", float(self.current_target_depth)
-                print "Stop at: ", float(self.stop_dist)
+                
+                #print "Vel: "+ str(lin_velocity * factor_l)
+                #print "Target: ", float(self.current_target_depth)
+                #print "Stop at: ", float(self.stop_dist)
 
-                if (self.current_target_depth < 2.0):
-                    self.move(linear = lin_velocity * factor_l, angular = angle_velocity * -1 * factor_a / 320.0 )
-                else:
-                    self.move(linear = lin_velocity, angular = angle_velocity * -1 * factor_a / 320.0 )
+               # self.move(linear = lin_velocity, angular = angle_velocity * -1 * factor_a / 320.0 )
+
+    def move_searh_n_destroy(self, lin_velocity, angle_velocity):
 
