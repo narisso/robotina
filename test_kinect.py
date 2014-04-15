@@ -14,10 +14,12 @@ if __name__ == "__main__":
 	robot = get_robot()
 	r = rospy.Rate(100)
 	while True:
-		robot.move_maze(0.10, 0.6)
+		#robot.move_maze(0.10, 0.6)
+		robot.move_searh_n_destroy(0.20, 1.0)
 		r.sleep()
 
-		#if robot.current_mask != None:
-			#cv2.imshow("Image",robot.horrible)
+		if robot.horrible != None:
+			cv2.imshow("Image",robot.horrible)
+			cv2.waitKey(1)
 
 		

@@ -47,7 +47,7 @@ class Turtlebot(object):
         rospy.myargv(argv=sys.argv)
 
         self.horrible = None
-        self.image_procesor = RobotinaImage(maze=True)
+        self.image_procesor = RobotinaImage(friend=True)
         self.current_maze_state = None
 
         self.__x = None
@@ -326,8 +326,8 @@ class Turtlebot(object):
 
             img = img[240 - h :240, 320 - w: 320 + w]
             self.horrible = img
-            self.current_maze_state, self.current_maze_depth = self.image_procesor.image_analisis(img)
-            print self.current_maze_state, " ", self.current_maze_depth
+            #self.current_maze_state, self.current_maze_depth = self.image_procesor.image_analisis(img)
+            #print self.current_maze_state, " ", self.current_maze_depth
             img = img[~np.isnan(img)]
 
             img = np.sort(img)
@@ -356,34 +356,36 @@ class Turtlebot(object):
     def __track_red(self):
 
         img = np.asarray(self.current_cv_rgb_image)
-        img = cv2.blur(img,(5,5))
-        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        x, self.horrible = self.image_procesor.image_analisis(img)
 
-        lower = np.array([170,160,60])
-        upper = np.array([180,256,256])
+        # img = cv2.blur(img,(5,5))
+        # hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-        mask = cv2.inRange(hsv, lower, upper)
-        mask = cv2.blur(mask,(5,5))
+        # lower = np.array([170,160,60])
+        # upper = np.array([180,256,256])
+
+        # mask = cv2.inRange(hsv, lower, upper)
+        # mask = cv2.blur(mask,(5,5))
         
-        self.current_mask = mask
+        # self.current_mask = mask
         
-        M=cv2.moments(mask)
+        # M=cv2.moments(mask)
         
-        if M['m00']>0:
+        if x != None:
             if self.current_state == "searching":
                 self.current_state = "following"
                 song = pygame.mixer.Sound('mgs2_sound/found.wav')
                 clock = pygame.time.Clock()
                 song.play()
 
-            centroid_x= int(M['m10']/M['m00'])
-            centroid_y= int(M['m01']/M['m00'])
-            self.current_target_x = centroid_x
-            self.current_target_y = centroid_y
+            centroid_x= x
+            # centroid_y= int(M['m01']/M['m00'])
+            # self.current_target_x = centroid_x
+            # self.current_target_y = centroid_y
         
         else:
-
             self.current_state = "searching"
+        print self.current_state
 
     def __check_depth(self):
         
@@ -414,15 +416,12 @@ class Turtlebot(object):
         if self.current_state == "searching":
 
             if self.current_substate == "moving":
-                #self.move(linear= lin_velocity)
-                pass
+                pass#self.move(linear= lin_velocity)
             elif self.current_substate == "turning":
-                #self.move(angular= angle_velocity, linear=0)
-                pass
+                pass#self.move(angular= angle_velocity, linear=0)
             elif self.current_substate == "backwards":
-                #self.move_distance(.1,-lin_velocity)
-                #s elf.move(angular= angle_velocity)
-                pass
+                pass#self.move_distance(.1,-lin_velocity)
+                #self.move(angular= angle_velocity)
 
         elif self.current_state == "following":
             #print (str(self.current_target_x) + "   "+ str(self.current_target_depth))
@@ -439,7 +438,7 @@ class Turtlebot(object):
                 #print "Target: ", float(self.current_target_depth)
                 #print "Stop at: ", float(self.stop_dist)
 
-               # self.move(linear = lin_velocity, angular = angle_velocity * -1 * factor_a / 320.0 )
+                #self.move(linear = lin_velocity, angular = angle_velocity * -1 * factor_a / 320.0 )
 
     def move_maze(self, lin_velocity, angle_velocity):
         threshold = 0.15
