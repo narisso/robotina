@@ -14,7 +14,7 @@ if __name__ == "__main__":
 	robot = get_robot()
 	r = rospy.Rate(100)
 	while True:
-		robot.move_searh_n_destroy(0.20, 1.0)
+		robot.move_maze(0.10, 0.6)
 		r.sleep()
 
 		#if robot.current_mask != None:

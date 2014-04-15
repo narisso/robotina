@@ -20,20 +20,25 @@ class RobotinaImage:
 
 
 	def deph_analisis(self, depth):
-		h,w = depth.shape
+		try:
 
-		max_depth = -1
-		max_depth_idx = -1
-		idx = 0
-		delta = int(w/3)
-		for i in range(0, 3):
-			segment = depth[:, idx:idx+delta]
-			idx = idx+delta+1
-			if segment[~np.isnan(segment)].max() > max_depth:
-				max_depth = segment[~np.isnan(segment)].max()
-				max_depth_idx = i
+			h,w = depth.shape
+			max_depth = -1
+			max_depth_idx = -1
+			idx = 0
+			delta = int(w/3)
+			arr = []
+			for i in range(0, 3):
+				segment = depth[:, idx:idx+delta]
+				arr.append( segment[~np.isnan(segment)].min() )
+				idx = idx+delta+1
+				if segment[~np.isnan(segment)].max() > max_depth:
+					max_depth = segment[~np.isnan(segment)].max()
+					max_depth_idx = i
+		except:
+			return 0 , 0
 
-		return max_depth_idx
+		return arr[0] - arr[2], arr[1]
 
 
 	def rgb_analisis(self, img):

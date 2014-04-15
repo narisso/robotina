@@ -48,6 +48,7 @@ class Turtlebot(object):
 
         self.horrible = None
         self.image_procesor = RobotinaImage(maze=True)
+        self.current_maze_state = None
 
         self.__x = None
         self.__y = None
@@ -325,8 +326,8 @@ class Turtlebot(object):
 
             img = img[240 - h :240, 320 - w: 320 + w]
             self.horrible = img
-            print self.image_procesor.image_analisis(img)
-
+            self.current_maze_state, self.current_maze_depth = self.image_procesor.image_analisis(img)
+            print self.current_maze_state, " ", self.current_maze_depth
             img = img[~np.isnan(img)]
 
             img = np.sort(img)
@@ -420,7 +421,7 @@ class Turtlebot(object):
                 pass
             elif self.current_substate == "backwards":
                 #self.move_distance(.1,-lin_velocity)
-                #self.move(angular= angle_velocity)
+                #s elf.move(angular= angle_velocity)
                 pass
 
         elif self.current_state == "following":
@@ -440,5 +441,20 @@ class Turtlebot(object):
 
                # self.move(linear = lin_velocity, angular = angle_velocity * -1 * factor_a / 320.0 )
 
-    def move_searh_n_destroy(self, lin_velocity, angle_velocity):
+    def move_maze(self, lin_velocity, angle_velocity):
+        threshold = 0.15
+        if self.current_maze_state != None:
+            angle_velocity = angle_velocity
+            _min = 0.2
+            if self.current_maze_depth < 0.5:
+                self.move( angular = angle_velocity * np.sign(self.current_maze_state) + 1)
+            else:
+                if self.current_maze_state > threshold:
+                    self.move(linear = lin_velocity , angular = angle_velocity * self.current_maze_state +_min)
+                elif self.current_maze_state < -threshold:
+                    self.move(linear = lin_velocity , angular = angle_velocity * self.current_maze_state -_min)
+                else:
+                    print 'Line'
+                    lin_velocity = lin_velocity
+                    self.move(linear = lin_velocity*self.current_maze_depth + .1 , angular= 0)
 
