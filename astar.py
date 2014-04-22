@@ -112,6 +112,7 @@ def shortest_path(graph, initial_node, goal_node, h):
     return route
  
  
+ # Testing algorithm
 if __name__ == '__main__':
     import math
     sldist = lambda c1, c2: math.sqrt((c2[0] - c1[0])**2 + (c2[1] - c1[1])**2)
