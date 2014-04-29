@@ -1,0 +1,620 @@
+<sdf version='1.4'>
+  <world name='default'>
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <!-- Own physics settings to speed up simulation -->
+    <physics type='ode'>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+    <!-- <pose>x y z roll pitch yaw</pose> -->
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_0</name>
+      <pose> 0.0 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_0</name>
+      <pose> 0.0 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_1</name>
+      <pose> 1.2 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_1</name>
+      <pose> 1.2 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_2</name>
+      <pose> 1.2 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_2</name>
+      <pose> 1.2 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_3</name>
+      <pose> 2.4 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_3</name>
+      <pose> 2.4 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_4</name>
+      <pose> 2.4 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_4</name>
+      <pose> 2.4 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_5</name>
+      <pose> 3.6 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_5</name>
+      <pose> 3.6 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_6</name>
+      <pose> 3.6 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_6</name>
+      <pose> 3.6 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_7</name>
+      <pose> 4.8 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_7</name>
+      <pose> 4.8 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_8</name>
+      <pose> 4.8 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_8</name>
+      <pose> 4.8 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_9</name>
+      <pose> 6.0 0.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_10</name>
+      <pose> 0.0 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_11</name>
+      <pose> 1.2 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_9</name>
+      <pose> 1.2 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_10</name>
+      <pose> 1.2 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_12</name>
+      <pose> 1.2 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_13</name>
+      <pose> 2.4 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_11</name>
+      <pose> 2.4 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_12</name>
+      <pose> 2.4 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_14</name>
+      <pose> 2.4 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_15</name>
+      <pose> 3.6 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_13</name>
+      <pose> 3.6 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_14</name>
+      <pose> 3.6 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_16</name>
+      <pose> 3.6 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_17</name>
+      <pose> 4.8 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_15</name>
+      <pose> 4.8 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_16</name>
+      <pose> 4.8 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_18</name>
+      <pose> 4.8 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_19</name>
+      <pose> 6.0 1.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_20</name>
+      <pose> 0.0 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_21</name>
+      <pose> 1.2 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_17</name>
+      <pose> 1.2 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_18</name>
+      <pose> 1.2 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_22</name>
+      <pose> 1.2 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_23</name>
+      <pose> 2.4 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_19</name>
+      <pose> 2.4 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_20</name>
+      <pose> 2.4 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_24</name>
+      <pose> 2.4 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_25</name>
+      <pose> 3.6 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_21</name>
+      <pose> 3.6 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_22</name>
+      <pose> 3.6 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_26</name>
+      <pose> 3.6 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_27</name>
+      <pose> 4.8 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_23</name>
+      <pose> 4.8 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_24</name>
+      <pose> 4.8 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_28</name>
+      <pose> 4.8 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_29</name>
+      <pose> 6.0 2.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_30</name>
+      <pose> 0.0 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_31</name>
+      <pose> 1.2 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_25</name>
+      <pose> 1.2 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_26</name>
+      <pose> 1.2 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_32</name>
+      <pose> 1.2 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_33</name>
+      <pose> 2.4 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_27</name>
+      <pose> 2.4 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_28</name>
+      <pose> 2.4 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_34</name>
+      <pose> 2.4 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_35</name>
+      <pose> 3.6 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_29</name>
+      <pose> 3.6 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_30</name>
+      <pose> 3.6 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_36</name>
+      <pose> 3.6 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_37</name>
+      <pose> 4.8 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_31</name>
+      <pose> 4.8 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_32</name>
+      <pose> 4.8 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_38</name>
+      <pose> 4.8 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_39</name>
+      <pose> 6.0 3.6 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_40</name>
+      <pose> 0.0 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_41</name>
+      <pose> 1.2 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_33</name>
+      <pose> 1.2 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_34</name>
+      <pose> 1.2 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_42</name>
+      <pose> 1.2 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_43</name>
+      <pose> 2.4 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_35</name>
+      <pose> 2.4 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_36</name>
+      <pose> 2.4 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_44</name>
+      <pose> 2.4 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_45</name>
+      <pose> 3.6 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_37</name>
+      <pose> 3.6 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_38</name>
+      <pose> 3.6 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_46</name>
+      <pose> 3.6 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_47</name>
+      <pose> 4.8 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_39</name>
+      <pose> 4.8 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_40</name>
+      <pose> 4.8 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_48</name>
+      <pose> 4.8 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_49</name>
+      <pose> 6.0 4.8 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_50</name>
+      <pose> 0.0 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_51</name>
+      <pose> 1.2 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_41</name>
+      <pose> 1.2 7.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_42</name>
+      <pose> 1.2 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_52</name>
+      <pose> 1.2 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_53</name>
+      <pose> 2.4 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_43</name>
+      <pose> 2.4 7.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_44</name>
+      <pose> 2.4 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_54</name>
+      <pose> 2.4 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_55</name>
+      <pose> 3.6 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_45</name>
+      <pose> 3.6 7.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_46</name>
+      <pose> 3.6 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_56</name>
+      <pose> 3.6 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_57</name>
+      <pose> 4.8 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_47</name>
+      <pose> 4.8 7.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_48</name>
+      <pose> 4.8 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_58</name>
+      <pose> 4.8 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_59</name>
+      <pose> 6.0 6.0 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_49</name>
+      <pose> 0.0 8.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_60</name>
+      <pose> 0.0 7.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_50</name>
+      <pose> 1.2 8.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_51</name>
+      <pose> 1.2 7.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_52</name>
+      <pose> 2.4 8.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_53</name>
+      <pose> 2.4 7.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_54</name>
+      <pose> 3.6 8.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_55</name>
+      <pose> 3.6 7.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_56</name>
+      <pose> 4.8 8.4 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall</uri>
+      <name>wall_57</name>
+      <pose> 4.8 7.2 0 0 0 0 </pose>
+    </include>
+    <include>
+      <uri>model://maze_wall_rotated</uri>
+      <name>wall_rotated_61</name>
+      <pose> 6.0 7.2 0 0 0 0 </pose>
+    </include>
+  </world>
+</sdf>
