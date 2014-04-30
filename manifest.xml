@@ -1,0 +1,17 @@
+<package>
+  <description brief="lab_3">
+
+     lab_3
+
+  </description>
+  <author>Orlando</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/lab_3</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+
+</package>
+
+
